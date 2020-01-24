@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>jQuery H-Smart-Thumnail Plugin</title>
+	<meta name="description" content="h-smart-thumbnail jquery plugin">
+	<meta name="author" content="Hassan Raza">
+
+	<link rel="stylesheet" href="./css/h-smart-thumbnail.min.css">
+
+	<style type="text/css">
+		.container{
+			max-width: 100%;
+			text-align: center;
+			min-height: calc(100vh - 70px);
+		}
+		footer{
+			padding: 10px;
+			background-color: #000;
+			text-align: center;
+		}
+
+		footer span{
+			color: #fff;
+		}
+		footer span a{
+			text-decoration: none;
+			color: #fff;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h1>H-Smart-Thumbail jQuery Plugin</h1>
+		<div>
+			<strong>Demo:</strong>
+		</div>
+		<hr>
+		<div class="plugin">
+			<ul>
+				<li>
+					<img src="img/img1.jpg">
+				</li>
+				<li>
+					<img src="img/img2.jpg">
+				</li>
+				<li>
+					<img src="img/img3.jpg">
+				</li>
+				<li>
+					<img src="img/img4.jpg">
+				</li>
+				<li>
+					<img src="img/img5.jpg">
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<footer>
+		<span>
+			Developed By: <a href="http://haxxanraxa.github.io/" target="_blank">Hassan Raza</a> 
+		</span>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="./js/h-smart-thumbnail.min.js"></script>
+
+	<script type="text/javascript">
+		$('.plugin').hSmartThumbnail();
+	</script>
+</body>
+</html>
