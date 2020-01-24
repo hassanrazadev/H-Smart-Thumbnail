@@ -12,14 +12,11 @@ Stack your images in `ul` like
     <div class="h-smart-thumnail">
 	    <ul>
 		   <li><img src="path/to/img"/></li>
-	    </ul>
-	    <ul>
 		   <li><img src="path/to/img"/></li>
-	    </ul>
-	    <ul>
 		   <li><img src="path/to/img"/></li>
+		   <li><img src="path/to/img"/></li> 
+		   ......
 	    </ul>
-	    ......
     </div>
 Call H-Smart-Thumbnail plugin
 
