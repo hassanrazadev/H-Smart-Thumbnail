@@ -1,10 +1,11 @@
 # H-Smart-Thumbnail
-jQuery image Thumbnail plugin 
+H-Smart-Thumbnail is a creative slider jQuery image Thumbnail plugin that enables the user to preview large images in a tooltip-style carousel popup when you click the thumbnail image.
 ### Getting Started
 #### Installation
 in browser
 
      <link href="/path/to/h-smart-thumbnail.css" rel="stylesheet">
+     <script src="/path/to/jquery.js"></script>
      <script src="/path/to/h-smart-thumbnail.js"></script>
 #### Usage
 Stack your images in `ul` like
