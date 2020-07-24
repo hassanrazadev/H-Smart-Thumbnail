@@ -8,20 +8,22 @@ in browser
      <script src="/path/to/jquery.js"></script>
      <script src="/path/to/h-smart-thumbnail.js"></script>
 #### Usage
-Stack your images in `ul` like
+Stack your images in `div` like
 
     <div class="h-smart-thumnail">
-	    <ul>
-		   <li><img src="path/to/img"/></li>
-		   <li><img src="path/to/img"/></li>
-		   <li><img src="path/to/img"/></li>
-		   <li><img src="path/to/img"/></li> 
-		   ......
-	    </ul>
+	    <div><img class="h-smart-thumb" data-file="realfile.jpg" src="thumbfile.jpg"></div>
     </div>
 Call H-Smart-Thumbnail plugin
 
     $('.h-smart-thumnail').hSmartThumbnail();
+
+#### Options
+    $('.h-smart-thumnail').hSmartThumbnail({
+      navbutton: true, // enable/disable allbutton
+      nextbutton: true, // enable/disable next/prev arrow
+      rotatebutton: true, // enable/disable rotate button
+      closebutton: true, // enable/disble close button
+    });
+
 #### Demo
 ![enter image description here](https://github.com/HaxxanRaxa/H-Smart-Thumbnail/raw/master/demo.png)
-

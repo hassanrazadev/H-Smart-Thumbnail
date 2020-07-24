@@ -1,46 +1,63 @@
 (function ($) {
-	$.fn.hSmartThumbnail = function () {
+	$.fn.hSmartThumbnail = function (options) {
+
+		// default options
+		var defaults = {
+			navbutton: true,
+			nextbutton: true,
+			rotatebutton: true,
+			closebutton: true
+		};
+
+		var option = $.extend(defaults, options);
+
 		return this.each(function() {
 			$(this).addClass('h-smart-thumbnail-container')
-			.find('ul').addClass('h-smart-thumbnail');
+			.find('div').addClass('h-smart-thumbnail');
 
-			let imageCount = $(this).find('ul li').length;
+			let imageCount = $(this).find('.h-smart-thumb').length;
 			$(this).attr('data-image-count', imageCount);
 
 			let index = 0;
-			$(this).find('ul li').each(function() {
+			$(this).find('.h-smart-thumb').each(function() {
 				$($(this)).attr('data-index', index++)
 				.attr('data-src', $($(this)).find('img').attr('src'))
 				.addClass('h-pic-view');
 			});
 
-			$(this).append(
-				'<div class="h-big-pic-view-main">' + 
-				'<div class="h-big-pic-view-header">' +
-				'<span class="icon icon-rotate-left"></span>' +
-				'<span class="icon icon-rotate-right"></span>' +
-				'<span class="icon icon-close"></span>' +
-				'</div>' +
-				'<div class="h-big-pic-view-body">' +
-				'<div class="h-big-pic-view-image" data-curr-index="0" data-curr-angle="0">' +
-				'</div>' +
-				'</div>' +
-				'<span class="h-arrow h-next-image icon icon-angle-left"></span>' +
-				'<span class="h-arrow h-prev-image icon icon-angle-right"></span>' +
-				'</div>'
-				);
+			// Default data index for first pic
+			$(this).find('[data-index=0]').addClass('active');
 
-			$(this).find('ul li').on('click', function(event) {
+			var outDisplay = '<div class="h-big-pic-view-main">';
+			if(option.navbutton == true) {
+				outDisplay = outDisplay + '<div class="h-big-pic-view-header">';
+				if(option.rotatebutton == true) {
+					outDisplay = outDisplay + '<span class="icon icon-rotate-left"></span><span class="icon icon-rotate-right"></span>';
+				}
+				if(option.closebutton == true) {
+					outDisplay = outDisplay + '<span class="icon icon-close"></span>';
+					outDisplay = outDisplay + '</div>';
+				}
+			}
+			outDisplay = outDisplay + '<div class="h-big-pic-view-body">';
+			outDisplay = outDisplay + '<div class="h-big-pic-view-image" data-curr-index="0" data-curr-angle="0">';
+			outDisplay = outDisplay + '</div></div>';
+			if(option.nextbutton == true) {
+				outDisplay = outDisplay + '<span class="h-arrow h-next-image icon icon-angle-left"></span><span class="h-arrow h-prev-image icon icon-angle-right"></span>';
+			}
+			outDisplay = outDisplay + '</div>';
+			$(this).append(outDisplay);
+
+			$('.h-smart-thumb').click(function() {
 				event.preventDefault();
-				$($(this)).parents('ul').find('li').removeClass('active');
-				let imgSrc = $($(this)).find('img').attr('src');
+				$(document).find('.h-smart-thumb').removeClass('active');
+				$(this).addClass('active');
+				let imgSrc = $(this).attr('data-file');
 				let indexNum = $($(this)).addClass('active').attr('data-index');
-				let bigImgView = $($(this)).parents('ul').siblings('.h-big-pic-view-main');
-
-				$(bigImgView).find('.h-big-pic-view-image').attr('data-curr-index', indexNum);
-				$(bigImgView).find('.h-big-pic-view-image').html('<img src="'+imgSrc+'" />');
-				$(bigImgView).show();
-			});
+				$('.h-big-pic-view-image').attr('data-curr-index', indexNum);
+				$('.h-big-pic-view-image').html('<img src="' + imgSrc + '" />');
+				$('.h-big-pic-view-main').show();
+			})
 
 			$(this).find('.h-big-pic-view-main').hover(function() {
 				$($(this)).find('.h-arrow').css('display', 'inline-block');
@@ -48,7 +65,7 @@
 				$($(this)).find('.h-arrow').css('display', 'none');
 			});
 
-			$(this).find('.h-big-pic-view-main .icon-angle-left').on('click',  function(event) {
+			$(this).find('.h-big-pic-view-main .icon-angle-left').on('click', function(event) {
 				event.preventDefault();
 				let currIndex = $($(this)).siblings('.h-big-pic-view-body').find('.h-big-pic-view-image').attr('data-curr-index');
 				let totalIndex = $($(this)).parents('.h-smart-thumbnail-container').attr('data-image-count');
@@ -107,7 +124,7 @@
 }(jQuery));
 
 function changeImage(indexNum, ref) {
-	$(ref).parents('.h-smart-thumbnail-container').find('ul li[data-index="' + indexNum + '"]').trigger('click');
+	$(ref).parents('.h-smart-thumbnail-container').find('img[data-index="' + indexNum + '"]').trigger('click');
 }
 
 function rotateImage(img, angle) {
